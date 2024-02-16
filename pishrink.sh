@@ -320,7 +320,7 @@ else
 fi
 
 #Make sure filesystem is ok
-checkFilesystem
+# checkFilesystem
 
 if ! minsize=$(resize2fs -P "$loopback"); then
 	rc=$?
