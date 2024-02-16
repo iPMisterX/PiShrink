@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="v0.1.4.111"
+version="v0.1.4.112"
 
 CURRENT_DIR="$(pwd)"
 SCRIPTNAME="${0##*/}"
@@ -53,7 +53,7 @@ function checkFilesystem() {
 	info "Filesystem error detected!"
 
 	info "Trying to recover corrupted filesystem"
-	e2fsck -y "$loopback"
+	e2fsck "$loopback"
 	(( $? < 4 )) && return
 
 if [[ $repair == true ]]; then
@@ -320,7 +320,7 @@ else
 fi
 
 #Make sure filesystem is ok
-# checkFilesystem
+checkFilesystem
 
 if ! minsize=$(resize2fs -P "$loopback"); then
 	rc=$?
